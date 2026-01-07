@@ -28,8 +28,10 @@ export default function AgentDashboard() {
     useEffect(() => {
         async function fetchMarketDemand() {
             try {
-                // Simulating the API response for now
-                // In real deployment: const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/market/scout?skill=AI/LLMs`);
+                // In prod, this hits your FastAPI backend
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+                // const res = await fetch(`${apiUrl}/market/scout?skill=AI/LLMs`);
+
                 await new Promise(r => setTimeout(r, 1200)); // Network delay simulation
                 const mockResponse = { skill: 'AI/LLMs', demand_score: 94, match_count: 12 };
                 setMarketData(mockResponse);
