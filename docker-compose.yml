@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # The Brain (Your FastAPI Backend)
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./backend:/app # Hot-reload for development
+
+  # The Market Memory (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: skillgraph
+    ports:
+      - "5432:5432"
+
+  # The Face (Next.js Frontend)
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

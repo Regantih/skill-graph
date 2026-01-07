@@ -12,7 +12,7 @@ export default function ChatInterface() {
         if (!input.trim()) return;
 
         // Add User Message
-        const newMessages = [...messages, { role: 'user', content: input }];
+        const newMessages = [...messages, { role: 'user' as const, content: input }];
         setMessages(newMessages);
         setInput('');
 
@@ -33,7 +33,7 @@ export default function ChatInterface() {
 
             if (response.ok) {
                 setMessages(prev => [...prev.filter(m => m.content !== "Verifying your profile..."), {
-                    role: 'agent',
+                    role: 'agent' as const,
                     content: `Verification Initiated! Claim ID: ${data.id}. Status: ${data.status}. I'm analyzing your repo now...`
                 }]);
             } else {
@@ -51,8 +51,8 @@ export default function ChatInterface() {
                 {messages.map((msg, i) => (
                     <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-[80%] p-4 rounded-2xl ${msg.role === 'user'
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-slate-800 text-slate-200 border border-slate-700'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-slate-800 text-slate-200 border border-slate-700'
                             }`}>
                             {msg.content}
                         </div>

@@ -19,7 +19,7 @@ export default function Home() {
 
       {/* Hero */}
       <main className="pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center space-y-12">
-        <div className="space-y-6 max-w-4xl">
+        <div className="space-y-6 max-w-4xl flex flex-col items-center">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
             A New Kind of <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Professional Identity</span>
@@ -28,14 +28,22 @@ export default function Home() {
             Build your verified agent. Discover experts. Stake reputation. <br />
             The decentralized talent protocol active on <strong>SkillGraph</strong>.
           </p>
+
+          <div className="flex gap-4 pt-4">
+            <Link href="/dashboard" className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-all">
+              Launch Dashboard
+            </Link>
+            <a
+              href="https://github.com/Regantih/skill-graph"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 border border-zinc-700 bg-zinc-900/50 text-white font-semibold rounded-full hover:bg-zinc-800 transition-all"
+            >
+              Documentation
+            </a>
+          </div>
         </div>
-        target="_blank"
-        rel="noopener noreferrer"
-          >
-        Documentation
-      </a>
-    </div>
-      </main >
+      </main>
     </div >
   );
 }
