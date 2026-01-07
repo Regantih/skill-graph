@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: apache/age:latest
+    container_name: skillgraph-db
+    ports:
+      - "5455:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: skillgraph
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  pgdata:
